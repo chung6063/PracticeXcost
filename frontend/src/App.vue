@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <BoardList/>
+    <Header></Header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import BoardList from './components/BoardList.vue';
+import Header from './components/layout/header.vue';
 
 export default {
   name: 'App',
   components: {
-    BoardList,
+    Header,
   }
 }
 </script>
@@ -22,6 +23,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
