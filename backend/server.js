@@ -53,6 +53,24 @@ mongoose.connect('mongodb://localhost:27017/board', {
         const result = await Board.findByIdAndDelete(id);
     })
 
+    app.put('/boardUpdate/:id' , async (req , res) => {
+        const { id } = req.params;
+        const { title, content } = req.body; // 새로 업데이트할 데이터
+
+        const updatedBoard = await Board.findByIdAndUpdate(
+            id,
+            { title, content },
+            { new: true } // 업데이트된 데이터를 반환
+        );
+        
+        if(updatedBoard){
+            res.status(200).json(updatedBoard);
+        }
+        else{
+            return res.status(404).send('게시글을 찾을 수 없습니다.');
+        }
+    })
+
 app.listen(3000, () => {
     console.log('서버가 http://localhost:3000 에서 실행 중');
 });
